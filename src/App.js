@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 
 
 
+
 function App() {
+
+  const [country, setCountry] = useState([])
+
+  
+
   return (
     <div className="App">
       <div>
