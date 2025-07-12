@@ -24,7 +24,7 @@ function App() {
       <div>
         {country.map((item, index) => (
           <div key={index}>
-            <h2>{item.name}</h2>
+            <h2>{item.name.common}</h2>
             <p>Capital: {item.capital}</p>
             <p>Population: {item.population}</p>
             <p>Area: {item.area} km²</p>
