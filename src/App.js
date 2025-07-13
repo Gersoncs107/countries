@@ -37,8 +37,7 @@ function App() {
   return (
     <div className="App">
       <div>
-        <label>Find Countries</label>
-        <input type='text' onChange={filterCountries}/>
+         Find Countries <input type='text' onChange={filterCountries}/>
       </div>
       <div>
         {country.length > 0 ? (
