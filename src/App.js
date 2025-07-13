@@ -6,38 +6,29 @@ function App() {
   const [country, setCountry] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
 
- useEffect(() => {
-    axios.get('http://localhost:3001/countries')
-      .then(response => {
-        setCountry(response.data);
-        console.log(response.data)
-      })
-      .catch(error => {
-        console.error("There was an error fetching the countries!", error);
-      });
-  }, []);
+//  useEffect(() => {
+//     axios.get('http://localhost:3001/countries')
+//       .then(response => {
+//         setCountry(response.data);
+//         console.log(response.data)
+//       })
+//       .catch(error => {
+//         console.error("There was an error fetching the countries!", error);
+//       });
+//   }, []);
 
   useEffect(() => {
     if (searchTerm) {
       axios.get(`http://localhost:3001/countries?name=${searchTerm}`)
         .then(response => {
           setCountry(response.data);
-          console.log(response.data);
+          // console.log(response.data);
         })
         .catch(error => {
           console.error("There was an error searching for countries!", error);
         });
-    } else {
-      axios.get('http://localhost:3001/countries')
-        .then(response => {
-          setCountry(response.data);
-          console.log(response.data);   
-    })
-        .catch(error => {
-          console.error("There was an error fetching the countries!", error);
-        });
-    }
-  }, [searchTerm]);
+    } 
+  }, []);
 
   const filterCountries = (event) => {
     setSearchTerm(event.target.value);
@@ -52,16 +43,29 @@ function App() {
       <div>
         {country.length > 0 ? (
           <ul>
-            {country.map((item) => (
-              <li key={item.name}>
-                <h2>{item.name}</h2>
-                <p>Capital: {item.capital}</p>
-                <p>Population: {item.population}</p>
-                <p>Area: {item.area} km²</p>
-                <p>Region: {item.region}</p>
-                <p>Subregion: {item.subregion}</p>
-                <p>Languages: {item.languages.map(lang => lang.name).join(', ')}</p>
-                <img src={item.flags.png} alt={`Flag of ${item.name}`} style={{ width: '100px', height: 'auto' }} />
+            {country.map((item, idx) => (
+              <li key={item.cca3 || item.ccn3 || item.cca2 || idx}>
+                <h2>{item.name?.common || item.name?.official || "No name"}</h2>
+                <p>Capital: {Array.isArray(item.capital) ? item.capital.join(", ") : item.capital || "N/A"}</p>
+                <p>Population: {item.population || "N/A"}</p>
+                <p>Area: {item.area ? `${item.area} km²` : "N/A"}</p>
+                <p>Region: {item.region || "N/A"}</p>
+                <p>Subregion: {item.subregion || "N/A"}</p>
+                <p>
+                    Languages:{" "}
+                    {item.languages
+                      ? Object.values(item.languages).join(", ")
+                      : "No languages listed"}
+                  </p>
+                {item.flags?.svg || item.flags?.png ? (
+                  <img
+                    src={item.flags.svg || item.flags.png}
+                    alt={`Flag of ${item.name?.common || item.name?.official || "country"}`}
+                    style={{ width: "100px", height: "auto" }}
+                  />
+                ) : (
+                  <span>No flag</span>
+                )}
               </li>
             ))}
           </ul>
