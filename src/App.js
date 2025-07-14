@@ -33,10 +33,19 @@ function App() {
           Find Countries <input onChange={handleSearch}/>
         </label>
       </form>
-
-      <div>
-        
-      </div>
+        <div>
+      {searchTerm === "" ? null : filteredCountries.length > 10 ? (
+        <p>Too many matches, please be more specific.</p>
+      ) : filteredCountries.length === 0 ? (
+        <p>No countries found.</p>
+      ) : (
+        <ul>
+          {filteredCountries.map((country) => (
+            <li key={country.cca3}>{country.name.common}</li>
+          ))}
+        </ul>
+      )}
+    </div>
     </div>
   );
 }
