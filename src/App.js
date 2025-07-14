@@ -10,7 +10,7 @@ function App() {
     axios.get('http://localhost:3001/countries')
       .then(response => {
         const dataCountry = response.data
-        console.log(country)
+        console.log(dataCountry)
         setCountries(dataCountry)
       })
       .catch(error => {
@@ -18,8 +18,11 @@ function App() {
       });
   }, []);
   
+  const filteredCountries = countries.filter((country)=> {
+    country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
+  })
 
-  const filterCountries = (event) => {
+  const handleSearch = (event) => {
     setSearchTerm(event.target.value);
   };
 
@@ -27,7 +30,7 @@ function App() {
     <div className="App">
       <form>
         <label>
-          Find Countries <input/>
+          Find Countries <input onChange={handleSearch}/>
         </label>
       </form>
     </div>
