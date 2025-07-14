@@ -7,7 +7,7 @@ function App() {
   const [searchTerm, setSearchTerm] = useState("")
 
  useEffect(() => {
-    axios.get('https://restcountries.com/v3.1/all')
+    axios.get('http://localhost:3001/countries')
       .then(response => {
         const countries = response.data
         console.log(countries)
