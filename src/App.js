@@ -33,6 +33,10 @@ function App() {
           Find Countries <input onChange={handleSearch}/>
         </label>
       </form>
+
+      <div>
+        
+      </div>
     </div>
   );
 }
