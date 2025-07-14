@@ -9,8 +9,8 @@ function App() {
  useEffect(() => {
     axios.get('https://restcountries.com/v3.1/all')
       .then(response => {
-        setCountry(response.data);
-        console.log(response.data)
+        const countries = response.data
+        console.log(countries)
       })
       .catch(error => {
         console.error("There was an error fetching the countries!", error);
