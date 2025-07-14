@@ -3,19 +3,21 @@ import axios from "axios";
 
 function App() {
 
-  const [country, setCountry] = useState([])
+  const [countries, setCountries] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
 
  useEffect(() => {
     axios.get('http://localhost:3001/countries')
       .then(response => {
-        const countries = response.data
-        console.log(countries)
+        const dataCountry = response.data
+        console.log(country)
+        setCountries(dataCountry)
       })
       .catch(error => {
         console.error("There was an error fetching the countries!", error);
       });
   }, []);
+  
 
   const filterCountries = (event) => {
     setSearchTerm(event.target.value);
@@ -25,7 +27,7 @@ function App() {
     <div className="App">
       <form>
         <label>
-          Find Countries <input/> 
+          Find Countries <input/>
         </label>
       </form>
     </div>
