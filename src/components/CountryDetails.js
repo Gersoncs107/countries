@@ -17,3 +17,5 @@ const CountryDetails = ({country}) => {
     </div>
   )
 }
+
+export default CountryDetails

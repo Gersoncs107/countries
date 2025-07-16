@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
+import CountryDetails from "./components/CountryDetails";
 
 function App() {
 
@@ -39,10 +40,12 @@ function App() {
     </form>
 
     <div>
-      {searchTerm === "" ? null : filteredCountries.length > 10 ? (
+        {searchTerm === "" ? null : filteredCountries.length > 10 ? (
         <p>Too many matches, please be more specific.</p>
       ) : filteredCountries.length === 0 ? (
         <p>No countries found.</p>
+      ) : filteredCountries.length === 1 ? (
+        <CountryDetails country={filteredCountries[0]} />
       ) : (
         <ul>
           {filteredCountries.map((country) => (
