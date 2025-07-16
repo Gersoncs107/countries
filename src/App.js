@@ -18,9 +18,13 @@ function App() {
       });
   }, []);
   
-  const filteredCountries = countries.filter((country) =>
-  country.name.common.toLowerCase().includes(searchTerm.toLowerCase())
-)
+  const filteredCountries = countries.filter((country) => {
+    const name =
+      country.name?.common ||
+      country.name?.official ||
+      ""; // fallback to empty string if both missing
+    return name.toLowerCase().includes(searchTerm.toLowerCase());
+  });
 
   const handleSearch = (event) => {
     setSearchTerm(event.target.value);
