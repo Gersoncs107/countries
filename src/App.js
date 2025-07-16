@@ -27,13 +27,14 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <form>
-        <label>
-          Find Countries <input onChange={handleSearch}/>
-        </label>
-      </form>
-        <div>
+  <div className="App">
+    <form>
+      <label>
+        Find Countries <input onChange={handleSearch} />
+      </label>
+    </form>
+
+    <div>
       {searchTerm === "" ? null : filteredCountries.length > 10 ? (
         <p>Too many matches, please be more specific.</p>
       ) : filteredCountries.length === 0 ? (
@@ -46,8 +47,9 @@ function App() {
         </ul>
       )}
     </div>
-    </div>
-  );
+  </div>
+);
+
 }
 
 export default App;
