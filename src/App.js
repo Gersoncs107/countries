@@ -51,8 +51,10 @@ function App() {
             <ul>
               {filteredCountries.map((country) => (
                 <ShowCountry 
-                  name={country.name?.common || country.name?.official || "No name"}
-                  onClick={() => setSelectedCountry(country)}/>
+                  country={country}
+                  onClick={() => setSelectedCountry(country)}
+                  key={country.cca3 || country.ccn3 || country.cca2}
+                />
               ))}
             </ul>
 
