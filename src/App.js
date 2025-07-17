@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import CountryDetails from "./components/CountryDetails";
+import ShowCountry from "./components/ShowCountry";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -49,12 +50,12 @@ function App() {
           <>
             <ul>
               {filteredCountries.map((country) => (
-                <li key={country.cca3 || country.ccn3 || country.cca2}>
-                  {country.name?.common || country.name?.official || "No name"}
-                  <button onClick={() => setSelectedCountry(country)}>Show</button>
-                </li>
+                <ShowCountry 
+                  name={country.name?.common || country.name?.official || "No name"}
+                  onClick={() => setSelectedCountry(country)}/>
               ))}
             </ul>
+
             {selectedCountry && <CountryDetails country={selectedCountry} />}
           </>
         )}
