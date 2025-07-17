@@ -6,6 +6,7 @@ function App() {
 
   const [countries, setCountries] = useState([])
   const [searchTerm, setSearchTerm] = useState("")
+  const [selectedCountry, setSelectedCountry] = useState('null')
 
  useEffect(() => {
     axios.get('http://localhost:3001/countries')
