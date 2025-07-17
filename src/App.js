@@ -50,7 +50,8 @@ function App() {
         <ul>
           {filteredCountries.map((country) => (
             <li key={country.cca3 || country.ccn3 || country.cca2}>
-              {country.name?.common || country.name?.official || "No name"} <button onClick={null}>Show</button>
+              {country.name?.common || country.name?.official || "No name"} 
+              <button onClick={() => <CountryDetails country={filteredCountries[0]}/>}>Show</button>
             </li>
           ))}
         </ul>
