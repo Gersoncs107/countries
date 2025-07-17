@@ -48,14 +48,18 @@ function App() {
       ) : filteredCountries.length === 1 ? (
         <CountryDetails country={filteredCountries[0]} />
       ) : (
+        <div>
         <ul>
           {filteredCountries.map((country) => (
             <li key={country.cca3 || country.ccn3 || country.cca2}>
               {country.name?.common || country.name?.official || "No name"} 
-              <button onClick={() => <CountryDetails country={filteredCountries[0]}/>}>Show</button>
+              <button onClick={() => setSelectedCountry(country)}>Show</button>
+
             </li>
           ))}
         </ul>
+        {selectedCountry &&  <CountryDetails country={filteredCountries[0]}/>}
+        </div>
       )}
     </div>
   </div>
