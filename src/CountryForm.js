@@ -8,3 +8,4 @@ const CountryForm = ({text, onChange}) => {
 
     )
 }
+export default CountryForm

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import CountryDetails from "./components/CountryDetails";
 import ShowCountry from "./components/ShowCountry";
+import CountryForm from "./CountryForm";
 
 function App() {
   const [countries, setCountries] = useState([]);
@@ -33,11 +34,7 @@ function App() {
 
   return (
     <div className="App">
-      <form>
-        <label>
-          Find Countries <input onChange={handleSearch} />
-        </label>
-      </form>
+        <CountryForm text={'Find Countries'} onChange={handleSearch}/>
 
       <div>
         {searchTerm === "" ? null : filteredCountries.length > 10 ? (
