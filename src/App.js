@@ -35,7 +35,6 @@ function App() {
   return (
     <div className="App">
         <CountryForm text={'Find Countries'} onChange={handleSearch}/>
-
       <div>
         {searchTerm === "" ? null : filteredCountries.length > 10 ? (
           <p>Too many matches, please be more specific.</p>
